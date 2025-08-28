@@ -19,10 +19,12 @@ export default function UserPage() {
   }, []);
 
   return (
-    <div>
-      <h2>User Panel</h2>
-      {data && <div style={{ color: "green" }}>{data}</div>}
-      {error && <div style={{ color: "red" }}>{error}</div>}
+    <div className="container">
+      <div className="card stack">
+        <h2 className="heading">User Panel</h2>
+        {data && <div className="alert alert-success">{data}</div>}
+        {error && <div className="alert alert-error">{error}</div>}
+      </div>
     </div>
   );
 }

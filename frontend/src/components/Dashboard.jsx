@@ -21,23 +21,27 @@ export default function Dashboard() {
   };
 
   return (
-    <div>
-      <h2>Welcome, {user?.name}</h2>
-      <p>Role: {user?.role}</p>
-      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-        {roleRank[user?.role] >= roleRank.user && (
-          <button onClick={() => callEndpoint("/user")}>Call /user</button>
-        )}
-        {roleRank[user?.role] >= roleRank.manager && (
-          <button onClick={() => callEndpoint("/manager")}>Call /manager</button>
-        )}
-        {roleRank[user?.role] >= roleRank.admin && (
-          <button onClick={() => callEndpoint("/admin")}>Call /admin</button>
-        )}
+    <div className="container">
+      <div className="toolbar">
+        <h2 className="heading">Welcome, {user?.name}</h2>
+        <button className="btn btn-secondary" onClick={logout}>Logout</button>
       </div>
-      {message && <div style={{ color: "green" }}>{message}</div>}
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      <button onClick={logout}>Logout</button>
+      <div className="card stack">
+        <p className="subtle">Role: {user?.role}</p>
+        <div className="button-row">
+          {roleRank[user?.role] >= roleRank.user && (
+            <button className="btn btn-primary" onClick={() => callEndpoint("/user")}>Call /user</button>
+          )}
+          {roleRank[user?.role] >= roleRank.manager && (
+            <button className="btn btn-primary" onClick={() => callEndpoint("/manager")}>Call /manager</button>
+          )}
+          {roleRank[user?.role] >= roleRank.admin && (
+            <button className="btn btn-primary" onClick={() => callEndpoint("/admin")}>Call /admin</button>
+          )}
+        </div>
+        {message && <div className="alert alert-success">{message}</div>}
+        {error && <div className="alert alert-error">{error}</div>}
+      </div>
     </div>
   );
 }

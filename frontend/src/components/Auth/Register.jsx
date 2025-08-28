@@ -26,31 +26,46 @@ export default function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Register</h2>
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      {success && <div style={{ color: "green" }}>{success}</div>}
-      <input
-        name="username"
-        placeholder="Username"
-        value={form.username}
-        onChange={handleChange}
-        required
-      />
-      <input
-        name="password"
-        type="password"
-        placeholder="Password"
-        value={form.password}
-        onChange={handleChange}
-        required
-      />
-      <select name="role" value={form.role} onChange={handleChange}>
-        <option value="user">User</option>
-        <option value="manager">Manager</option>
-        <option value="admin">Admin</option>
-      </select>
-      <button type="submit">Register</button>
-    </form>
+    <div className="container">
+      <div className="card">
+        <h2 className="heading">Register</h2>
+        {error && <div className="alert alert-error">{error}</div>}
+        {success && <div className="alert alert-success">{success}</div>}
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="reg-username">Username</label>
+            <input
+              id="reg-username"
+              name="username"
+              placeholder="Enter a username"
+              value={form.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="reg-password">Password</label>
+            <input
+              id="reg-password"
+              name="password"
+              type="password"
+              placeholder="Create a password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="reg-role">Role</label>
+            <select id="reg-role" name="role" value={form.role} onChange={handleChange}>
+              <option value="user">User</option>
+              <option value="manager">Manager</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <button className="btn btn-primary" type="submit">Register</button>
+        </form>
+      </div>
+    </div>
   );
 }

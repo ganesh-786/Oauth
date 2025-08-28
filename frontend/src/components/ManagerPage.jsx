@@ -19,10 +19,12 @@ export default function ManagerPage() {
   }, []);
 
   return (
-    <div>
-      <h2>Manager Panel</h2>
-      {data && <div style={{ color: "green" }}>{data}</div>}
-      {error && <div style={{ color: "red" }}>{error}</div>}
+    <div className="container">
+      <div className="card stack">
+        <h2 className="heading">Manager Panel</h2>
+        {data && <div className="alert alert-success">{data}</div>}
+        {error && <div className="alert alert-error">{error}</div>}
+      </div>
     </div>
   );
 }
