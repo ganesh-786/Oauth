@@ -6,6 +6,7 @@ export default function Dashboard() {
   const { user, logout } = useContext(AuthContext);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const roleRank = { user: 1, manager: 2, admin: 3 };
 
   const callEndpoint = async (path) => {
     setMessage("");
@@ -24,13 +25,15 @@ export default function Dashboard() {
       <h2>Welcome, {user?.name}</h2>
       <p>Role: {user?.role}</p>
       <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-        <button onClick={() => callEndpoint("/user")}>Call /user</button>
-        <button onClick={() => callEndpoint("/manager")}>
-          Call /manager
-        </button>
-        <button onClick={() => callEndpoint("/admin")}>
-          Call /admin
-        </button>
+        {roleRank[user?.role] >= roleRank.user && (
+          <button onClick={() => callEndpoint("/user")}>Call /user</button>
+        )}
+        {roleRank[user?.role] >= roleRank.manager && (
+          <button onClick={() => callEndpoint("/manager")}>Call /manager</button>
+        )}
+        {roleRank[user?.role] >= roleRank.admin && (
+          <button onClick={() => callEndpoint("/admin")}>Call /admin</button>
+        )}
       </div>
       {message && <div style={{ color: "green" }}>{message}</div>}
       {error && <div style={{ color: "red" }}>{error}</div>}
