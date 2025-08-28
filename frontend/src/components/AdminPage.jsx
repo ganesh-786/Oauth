@@ -19,10 +19,12 @@ export default function AdminPage() {
   }, []);
 
   return (
-    <div>
-      <h2>Admin Panel</h2>
-      {data && <div style={{ color: "green" }}>{data}</div>}
-      {error && <div style={{ color: "red" }}>{error}</div>}
+    <div className="container">
+      <div className="card stack">
+        <h2 className="heading">Admin Panel</h2>
+        {data && <div className="alert alert-success">{data}</div>}
+        {error && <div className="alert alert-error">{error}</div>}
+      </div>
     </div>
   );
 }
